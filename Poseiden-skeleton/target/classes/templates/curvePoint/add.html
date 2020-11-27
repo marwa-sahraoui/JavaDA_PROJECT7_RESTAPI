@@ -1,26 +1,72 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
 
-	<div class="row">
-		<h2>Add New Curve Point</h2>
-	</div>
+    <div class="row">
+        <h2>Add New Curve Point</h2>
+    </div>
 
-	<div class="row">
-		<form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
-			 -->
-
-		</form>
-	</div>
+    <div class="row">
+        <form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post"
+              class="form-horizontal" style="width: 100%">
+            <!--
+            TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint:DONE
+               -->
+            <table>
+                <tr>
+                    <td>CurveId:</td>
+                    <td><input type="text" th:field="*{curveId}"></td>
+                    <td th:if="${#fields.hasErrors('curveId')}" th:errors="*{curveId}">curveId
+                        Error
+                    </td>
+                </tr>
+                <tr>
+                    <td>asOfDate:</td>
+                    <td><input type="date" th:field="*{asOfDate}"></td>
+                    <td th:if="${#fields.hasErrors('asOfDate')}" th:errors="*{asOfDate}">asOfDate
+                        Error
+                    </td>
+                </tr>
+                <tr>
+                    <td>term:</td>
+                    <td><input type="text" th:field="*{term}"></td>
+                    <td th:if="${#fields.hasErrors('term')}" th:errors="*{term}">term
+                        Error
+                    </td>
+                </tr>
+                <tr>
+                    <td>value:</td>
+                    <td><input type="text" th:field="*{value}"></td>
+                    <td th:if="${#fields.hasErrors('value')}" th:errors="*{value}">value
+                        Error
+                    </td>
+                </tr>
+                <tr>
+                    <td>creationDate:</td>
+                    <td><input type="date" th:field="*{creationDate}"></td>
+                    <td th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}">creationDate
+                        Error
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Save">
+                    </td>
+                    <td>
+                        <button type="button" onclick="javascript:window.location='list';">Cancel
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
 </div>
 </body>

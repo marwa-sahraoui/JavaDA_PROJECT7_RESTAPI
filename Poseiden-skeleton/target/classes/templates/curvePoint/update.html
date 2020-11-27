@@ -1,24 +1,54 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-	<div class="row">
-		<h2>Update CurvePoint</h2>
-	</div>
+    <div class="row">
+        <h2>Update CurvePoint</h2>
+    </div>
 
-	<div class="row">
-		<form action="#" th:action="@{/curvePoint/update/{id}(id=${curvePoint.id})}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of CurvePoint, there are 2 buttons: Update data and Cancel to the Curve Point
-			 -->
-		</form>
-	</div>
+    <div class="row">
+        <form action="#" th:action="@{/curvePoint/update/{id}(id=${curvePoint.id})}" th:object="${curvePoint}"
+              method="post" class="form-horizontal" style="width: 100%">
+            <!--
+            TODO: Create a form to edit the values of CurvePoint, there are 2 buttons: Update data and Cancel to the Curve Point
+             -->
+            <Table>
+                <tr>
+                    <td for="curveId">CurveId</td>
+                    <td><input type="text" th:field="*{curveId}" id="curveId" placeholder="CurveId"></td>
+                    <td th:if="${#fields.hasErrors('curveId')}" th:errors="*{curveId}"></td>
+                </tr>
+
+                <tr>
+                    <td for="term">Term</td>
+                    <td><input type="text" th:field="*{term}" id="term" placeholder="Term"></td>
+                    <td th:if="${#fields.hasErrors('term')}" th:errors="*{term}"></td>
+                </tr>
+                <tr>
+                    <td for="value">Value</td>
+                    <td><input type="text" th:field="*{value}" id="value" placeholder="Value"></td>
+                    <td th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Cancel">
+                    </td>
+                    <td>
+
+                        <input type="submit" value="Update curvePoint">
+                    </td>
+                </tr>
+            </Table>
+
+        </form>
+    </div>
 
 </div>
 </body>
