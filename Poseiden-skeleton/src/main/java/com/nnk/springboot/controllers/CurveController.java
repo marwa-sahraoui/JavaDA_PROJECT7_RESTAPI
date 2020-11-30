@@ -8,6 +8,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class CurveController {
@@ -45,9 +48,23 @@ public class CurveController {
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list:DONE
+        //bindingresult enregistre les erreurs pour appliquer le validator
 
         if (result.hasErrors()) {
-            return "curvePoint/add";
+
+            Set<String> fields = result.getFieldErrors()
+                    
+                    .stream()
+                    .map(fieldError -> fieldError.getField())
+                    .collect(Collectors.toSet());
+            //comm
+
+            if (fields.contains("asOfDate") && fields.contains("creationDate") && fields.size() == 2) {
+                curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
+                curvePoint.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+            } else {
+                return "redirect:/curvePoint/add";
+            }
         }
 
         curvePointRepository.save(curvePoint);
@@ -74,8 +91,19 @@ public class CurveController {
         // TODO: check required fields, if valid call service to update Curve and return Curve list ..
 
         if (result.hasErrors()) {
-            curvePoint.setId(id);
-            return "curvePoint/update/"+id;
+
+            Set<String> fields = result.getFieldErrors()
+                    .stream()
+                    .map(fieldError -> fieldError.getField())
+                    .collect(Collectors.toSet());
+
+            if (fields.contains("asOfDate") && fields.contains("creationDate") && fields.size() == 2) {
+                CurvePoint savedCurvePoint = curvePointRepository.getOne(id);
+                curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
+                curvePoint.setCreationDate(savedCurvePoint.getCreationDate());
+            } else {
+                return "redirect:/curvePoint/update/" + id;
+            }
         }
 
         curvePointRepository.save(curvePoint);
@@ -90,7 +118,7 @@ public class CurveController {
 
         CurvePoint curvePoint = curvePointRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
-        curvePointRepository.delete( curvePoint);
+        curvePointRepository.delete(curvePoint);
         model.addAttribute("curvePoint", curvePointRepository.findAll());
         return "redirect:/curvePoint/list";
     }

@@ -27,13 +27,7 @@
                         Error
                     </td>
                 </tr>
-                <tr>
-                    <td>asOfDate:</td>
-                    <td><input type="date" th:field="*{asOfDate}"></td>
-                    <td th:if="${#fields.hasErrors('asOfDate')}" th:errors="*{asOfDate}">asOfDate
-                        Error
-                    </td>
-                </tr>
+
                 <tr>
                     <td>term:</td>
                     <td><input type="text" th:field="*{term}"></td>
@@ -48,20 +42,13 @@
                         Error
                     </td>
                 </tr>
-                <tr>
-                    <td>creationDate:</td>
-                    <td><input type="date" th:field="*{creationDate}"></td>
-                    <td th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}">creationDate
-                        Error
-                    </td>
-                </tr>
+
                 <tr>
                     <td>
                         <input type="submit" value="Save">
                     </td>
                     <td>
-                        <button type="button" onclick="javascript:window.location='list';">Cancel
-                        </button>
+                        <input type="submit" value="Cancel">
                     </td>
                 </tr>
             </table>
