@@ -18,7 +18,53 @@
 			<!--
 			TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
 			 -->
+             <table>
 
+				 <!--tr>
+					<td>Id:</td>
+					<td><input type="text" th:field="*{id}"></td>
+					<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id
+							 Error
+					</td>
+				 </tr-->
+				 <tr>
+					 <td>MoodysRating:</td>
+					 <td><input type="text" th:field="*{moodysRating}"></td>
+					 <td th:if="${#fields.hasErrors('moodysRating')}" th:errors="*{moodysRating}">moodysRating
+						 Error
+					 </td>
+				 </tr>
+				 <tr>
+					 <td>SandPRating:</td>
+					 <td><input type="text" th:field="*{sandPRating}"></td>
+					 <td th:if="${#fields.hasErrors('sandPRating')}" th:errors="*{sandPRating}">sandPRating
+						 Error
+					 </td>
+				 </tr>
+				 <tr>
+					 <td>FitchRating:</td>
+					 <td><input type="text" th:field="*{fitchRating}"></td>
+					 <td th:if="${#fields.hasErrors('fitchRating')}" th:errors="*{fitchRating}">fitchRating
+						 Error
+					 </td>
+				 </tr>
+				 <tr>
+					 <td>OrderNumber:</td>
+					 <td><input type="text" th:field="*{orderNumber}"></td>
+					 <td th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}">orderNumber
+						 Error
+					 </td>
+				 </tr>
+				 <tr>
+					 <td>
+						 <input type="submit" value="Save">
+					 </td>
+					 <td>
+						 <input type="submit" value="Cancel">
+					 </td>
+				 </tr>
+
+			 </table>
 		</form>
 	</div>
 

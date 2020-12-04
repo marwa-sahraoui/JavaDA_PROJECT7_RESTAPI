@@ -48,25 +48,32 @@ public class CurveController {
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list:DONE
-        //bindingresult enregistre les erreurs pour appliquer le validator
-
-        if (result.hasErrors()) {
-
-            Set<String> fields = result.getFieldErrors()
-                    
-                    .stream()
-                    .map(fieldError -> fieldError.getField())
-                    .collect(Collectors.toSet());
-            //comm
-
-            if (fields.contains("asOfDate") && fields.contains("creationDate") && fields.size() == 2) {
-                curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
-                curvePoint.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
-            } else {
-                return "redirect:/curvePoint/add";
-            }
-        }
-
+        /*
+        bindingresult enregistre les erreurs pour appliquer le validator
+         si on a des erreurs, on les collecte dans un set
+         à partir d'un stream
+         */
+//        if (result.hasErrors()) {
+//
+//            Set<String> fields = result.getFieldErrors()
+//
+//                    .stream()
+//                    .map(fieldError -> fieldError.getField())
+//                    .collect(Collectors.toSet());
+//            /*
+//            si le set contient asofdate ou creationdate on va les donner le temps actuel localdateTime.now
+//
+//             */
+//
+//            if (fields.contains("asOfDate") && fields.contains("creationDate") && fields.size() == 2) {
+//                curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
+//                curvePoint.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+//            } else {
+//                return "redirect:/curvePoint/add";
+//            }
+//        }
+       curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
+       curvePoint.setCreationDate(Timestamp.valueOf(LocalDateTime.now())); //en service
         curvePointRepository.save(curvePoint);
 
         home(model);
@@ -96,7 +103,10 @@ public class CurveController {
                     .stream()
                     .map(fieldError -> fieldError.getField())
                     .collect(Collectors.toSet());
-
+            /*
+            mm principe mais ce qui va changer si on fait une mise a jour creationdate c la mm que dans la methode
+            add mais ce qui va changer c'est l'attribut asofdate
+             */
             if (fields.contains("asOfDate") && fields.contains("creationDate") && fields.size() == 2) {
                 CurvePoint savedCurvePoint = curvePointRepository.getOne(id);
                 curvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
@@ -119,7 +129,7 @@ public class CurveController {
         CurvePoint curvePoint = curvePointRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
         curvePointRepository.delete(curvePoint);
-        model.addAttribute("curvePoint", curvePointRepository.findAll());
+        model.addAttribute("curvePointz", curvePointRepository.findAll());
         return "redirect:/curvePoint/list";
     }
 }
