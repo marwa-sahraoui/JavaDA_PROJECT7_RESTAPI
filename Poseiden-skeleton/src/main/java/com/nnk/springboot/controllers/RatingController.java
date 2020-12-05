@@ -46,7 +46,7 @@ public class RatingController {
            return "rating/add";
        }
 
-      ratingRepository.save(rating);
+      ratingService.save(rating);
         home(model);
 
         return "rating/list";
@@ -57,8 +57,7 @@ public class RatingController {
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Rating by Id and to model then show to the form DONE
 
-        Rating rating = ratingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+        Rating rating = ratingService.findById(id);
 
         model.addAttribute("rating", rating);
         return "rating/update";
@@ -71,20 +70,17 @@ public class RatingController {
         if(result.hasErrors()){
             return "redirect:/rating/update/" + id;
         }
-        ratingRepository.save(rating);
-        model.addAttribute("ratingz", ratingRepository.findAll());
+        ratingService.save(rating);
+        model.addAttribute("ratingz", ratingService.findAll());
 
         return "redirect:/rating/list";
     }
 
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Rating by Id and delete the Rating, return to Rating list
+        // TODO: Find Rating by Id and delete the Rating, return to Rating list DONE
 
-        Rating rating = ratingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
-        ratingRepository.delete(rating);
-        model.addAttribute("ratings", ratingRepository.findById(id));
+       ratingService.delete(id);
         return "redirect:/rating/list";
     }
 }

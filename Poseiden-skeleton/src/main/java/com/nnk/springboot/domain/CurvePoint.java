@@ -18,7 +18,6 @@ public class CurvePoint {
     private Integer id;
     @NotNull(message = "CurveId is mandatory")  //not null pour valider tous les champs
     private Integer curveId;
-
     @NotNull(message = "AsOfDate is mandatory")
     private Timestamp asOfDate;
     @NotNull(message = "Term is mandatory")

@@ -18,7 +18,60 @@
 			<!--
 			TODO: Create a form to input the values of RuleName, there are 2 buttons: Save data and Cancel to the list RuleName
 			 -->
+			<Table>
 
+			  <tr>
+				  <td>Name:</td>
+				  <td><input type="text" th:field="*{name}"></td>
+				  <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name
+					  Error
+				  </td>
+
+			  <tr>
+				  <td>Description:</td>
+				  <td><input type="text" th:field="*{description}"></td>
+				  <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description
+					  Error
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>Json:</td>
+				  <td><input type="text" th:field="*{json}"></td>
+				  <td th:if="${#fields.hasErrors('json')}" th:errors="*{json}">json
+					  Error
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>Template:</td>
+				  <td><input type="text" th:field="*{template}"></td>
+				  <td th:if="${#fields.hasErrors('template')}" th:errors="*{template}">template
+					  Error
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>SqlStr:</td>
+				  <td><input type="text" th:field="*{sqlStr}"></td>
+				  <td th:if="${#fields.hasErrors('sqlStr')}" th:errors="*{sqlStr}">sqlStr
+					  Error
+				  </td>
+			  </tr>
+			  <tr>
+				  <td>SqlPart:</td>
+				  <td><input type="text" th:field="*{sqlPart}"></td>
+				  <td th:if="${#fields.hasErrors('sqlPart')}" th:errors="*{sqlPart}">sqlPart
+					  Error
+				  </td>
+			  </tr>
+               <tr>
+				  <td>
+					  <input type="submit" value="Save">
+				  </td>
+				  <td>
+					  <input type="submit" value="Cancel">
+				  </td>
+			  </tr>
+
+			</Table>
 		</form>
 	</div>
 
