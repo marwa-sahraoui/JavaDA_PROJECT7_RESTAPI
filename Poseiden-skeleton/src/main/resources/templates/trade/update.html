@@ -15,8 +15,36 @@
 	<div class="row">
 		<form action="#" th:action="@{/trade/update/{id}(id=${trade.tradeId})}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
-			TODO: Create a form to edit the values of Trade, there are 2 buttons: Update data and Cancel to the Trade List
+			TODO: Create a form to edit the values of Trade, there are 2 buttons: Update data and Cancel to the Trade List Done
 			 -->
+			<Table>
+				<tr>
+					<td for="account">Account</td>
+					<td><input type="text" th:field="*{account}" id="account" placeholder="Account"></td>
+					<td th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></td>
+				</tr>
+
+				<tr>
+					<td for="type">Type</td>
+					<td><input type="text" th:field="*{type}" id="description" placeholder="Type"></td>
+					<td th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></td>
+				</tr>
+				<tr>
+					<td for="json">BuyQuantity</td>
+					<td><input type="text" th:field="*{buyQuantity}" id="buyQuantity" placeholder="BuyQuantity"></td>
+					<td th:if="${#fields.hasErrors('buyQuantity')}" th:errors="*{buyQuantity}"></td>
+				</tr>
+
+				<tr>
+					<td>
+						<input type="submit" value="Cancel">
+					</td>
+					<td>
+
+						<input type="submit" value="Update Trade">
+					</td>
+				</tr>
+			</Table>
 		</form>
 	</div>
 

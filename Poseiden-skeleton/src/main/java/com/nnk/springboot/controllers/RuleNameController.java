@@ -68,8 +68,6 @@ public class RuleNameController {
         ruleNameService.save(ruleName);
         model.addAttribute("ruleNamez", ruleNameService.findAll());
 
-
-
         return "redirect:/ruleName/list";
     }
 
