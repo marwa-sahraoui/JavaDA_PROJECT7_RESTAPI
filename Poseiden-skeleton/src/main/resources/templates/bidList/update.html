@@ -13,10 +13,58 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/bidList/update/{id}(id=${bidList.bidListId})}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">
+
+		<form action="#" th:action="@{/bidList/update/{id}(id=${bidListz.bidListId})}" th:object="${bidListz}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
 			TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
 			 -->
+			<Table>
+				<tr style="display:none;">
+					<td for="bidListId">bidListId</td>
+					<td><input type="text" th:field="*{bidListId}" id="id" placeholder="Id"></td>
+					<td th:if="${#fields.hasErrors('bidListId')}" th:errors="*{bidListId}"></td>
+				</tr>
+
+				<tr>
+					<td for="account">Account</td>
+					<td><input type="text" th:field="*{account}" id="account" placeholder="Account"></td>
+					<td th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></td>
+				</tr>
+
+				<tr>
+					<td for="type">Type</td>
+					<td><input type="text" th:field="*{type}" id="description" placeholder="Type"></td>
+					<td th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></td>
+				</tr>
+				<tr>
+					<td for="bidQuantity">BidQuantity</td>
+					<td><input type="text" th:field="*{bidQuantity}" id="bidQuantity" placeholder="BidQuantity"></td>
+					<td th:if="${#fields.hasErrors('bidQuantity')}" th:errors="*{bidQuantity}"></td>
+				</tr>
+
+				<tr>
+					<td for="bid">Bid</td>
+					<td><input type="text" th:field="*{bid}" id="bid" placeholder="Bid"></td>
+					<td th:if="${#fields.hasErrors('bid')}" th:errors="*{bid}"></td>
+				</tr>
+
+				<tr>
+					<td for="ask">Ask</td>
+					<td><input type="text" th:field="*{ask}" id="ask" placeholder="Ask"></td>
+					<td th:if="${#fields.hasErrors('ask')}" th:errors="*{ask}"></td>
+				</tr>
+
+				<tr>
+					<td>
+						<input type="submit" value="Cancel">
+					</td>
+					<td>
+
+						<input type="submit" value="Update bidList">
+					</td>
+				</tr>
+			</Table>
+
 		</form>
 	</div>
 

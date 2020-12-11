@@ -33,11 +33,29 @@
 					<th>Account</th>
 					<th>Type</th>
 					<th>Bid Quantity</th>
+					<th>Bid</th>
+					<th>Ask</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<!-- TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons -->
+				<!-- TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons DONE-->
+
+				<tr th:each = "b:${bidlistz}">
+
+					<td th:text="${b.bidListId}"> </td>
+					<td th:text="${b.account}"> </td>
+					<td th:text="${b.type}"> </td>
+					<td th:text="${b.bidQuantity}"> </td>
+					<td th:text="${b.bid}"> </td>
+					<td th:text="${b.ask}"> </td>
+					<td>
+						<a th:href="@{update/{id}(id=${b.bidListId})}"> Edit |</a>
+
+						<a th:href="@{delete/{id}(id=${b.bidListId})}"> Delete </a>
+
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

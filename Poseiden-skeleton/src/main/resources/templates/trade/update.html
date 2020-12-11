@@ -18,6 +18,12 @@
 			TODO: Create a form to edit the values of Trade, there are 2 buttons: Update data and Cancel to the Trade List Done
 			 -->
 			<Table>
+				<tr style="display:none;">
+					<td for="bidListId">tradeId</td>
+					<td><input type="text" th:field="*{tradeId}" id="id" placeholder="Id"></td>
+					<td th:if="${#fields.hasErrors('tradeId')}" th:errors="*{tradeId}"></td>
+				</tr>
+
 				<tr>
 					<td for="account">Account</td>
 					<td><input type="text" th:field="*{account}" id="account" placeholder="Account"></td>

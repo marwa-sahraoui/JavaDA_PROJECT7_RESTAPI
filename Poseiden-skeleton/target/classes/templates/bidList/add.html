@@ -16,8 +16,53 @@
 	<div class="row">
 		<form action="#" th:action="@{/bidList/validate}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
-			TODO: Create a form to input the values of Bid, there are 2 buttons: Save data and Cancel to the list Bid
+			TODO: Create a form to input the values of Bid, there are 2 buttons: Save data and Cancel to the list Bid DONE
 			 -->
+			<Table>
+				<tr>
+					<td>Account:</td>
+					<td><input type="text" th:field="*{account}"></td>
+					<td th:if="${#fields.hasErrors('account')}" th:errors="*{account}">account
+						Error
+					</td>
+				</tr>
+				<tr>
+					<td>Type:</td>
+					<td><input type="text" th:field="*{type}"></td>
+					<td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">type
+						Error
+					</td>
+				</tr>
+				<tr>
+					<td>BidQuantity:</td>
+					<td><input type="text" th:field="*{bidQuantity}"></td>
+					<td th:if="${#fields.hasErrors('bidQuantity')}" th:errors="*{bidQuantity}">bidQuantity
+						Error
+					</td>
+				</tr>
+				<tr>
+					<td>Bid:</td>
+					<td><input type="text" th:field="*{bid}"></td>
+					<td th:if="${#fields.hasErrors('bid')}" th:errors="*{bid}">bid
+						Error
+					</td>
+				</tr>
+				<tr>
+					<td>Ask:</td>
+					<td><input type="text" th:field="*{ask}"></td>
+					<td th:if="${#fields.hasErrors('ask')}" th:errors="*{ask}">ask
+						Error
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" value="Save">
+					</td>
+					<td>
+						<input type="submit" value="Cancel">
+					</td>
+				</tr>
+			</Table>
 		</form>
 	</div>
 
