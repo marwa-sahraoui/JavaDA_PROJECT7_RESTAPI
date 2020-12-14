@@ -19,7 +19,11 @@
 			TODO: Create a form to edit the values of Rating, there are 2 buttons: Update data and Cancel to the Rating
 			 -->
 			<Table>
-
+				<tr style="display:none;">
+					<td for="id">id</td>
+					<td><input type="text" th:field="*{id}" id="id" placeholder="Id"></td>
+					<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></td>
+				</tr>
 				<tr>
 					<td for="moodysRating">MoodysRating:</td>
 					<td><input type="text" th:field="*{moodysRating}" id="term" placeholder="moodysRating"></td>

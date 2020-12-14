@@ -3,27 +3,22 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.services.CurveService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Controller
 public class CurveController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CurveController.class);
+
     // TODO: Inject Curve Point service
     @Autowired
     CurveService curveService;
@@ -37,11 +32,15 @@ public class CurveController {
         List<CurvePoint> curvePoints = curveService.findAll();
 
         model.addAttribute("curvePointaz", curvePoints);
+        LOGGER.info("Loading page :curvePoint/list + numbre of curvePoints: " + curvePoints.size());
+
         return "curvePoint/list";
     }
 
     @GetMapping("/curvePoint/add")
     public String addBidForm(CurvePoint bid) {
+
+        LOGGER.info("Loading page :curvePoint/add");
         return "curvePoint/add";
     }
 
@@ -49,13 +48,15 @@ public class CurveController {
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list:DONE
         if (result.hasErrors()) {
+            LOGGER.error("Validation error on curvePoint/add!!!");
+
             return "curvePoint/add";
         }
 
         curveService.save(curvePoint);
         home(model);
 
-
+        LOGGER.info("Loading page :curvePoint/list + new curvePoint adding + id: " + curvePoint.getCurveId());
         return "curvePoint/list";
     }
 
@@ -66,6 +67,8 @@ public class CurveController {
         CurvePoint curvePoint = curveService.findById(id);
 
         model.addAttribute("curvePoint", curvePoint);
+
+        LOGGER.info("Loading page :curvePoint/update/id :updating curvePoint with id: " + id);
         return "curvePoint/update";
     }
 
@@ -82,6 +85,7 @@ public class CurveController {
         curveService.save(curvePoint);
         model.addAttribute("curvePointaz", curvePointRepository.findAll());
 
+        LOGGER.info("Redirection to :curvePoint/list with updating curvePoint with id: " +curvePoint.getCurveId());
         return "redirect:/curvePoint/list";
 
     }
@@ -91,6 +95,7 @@ public class CurveController {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list..
 
         curveService.delete(id);
+        LOGGER.info("Redirection to :curvePoint/list with deleting curvePoint with id: " + id );
         return "redirect:/curvePoint/list";
     }
 }

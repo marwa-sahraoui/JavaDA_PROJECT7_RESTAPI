@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.services.RuleNameService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ import java.util.List;
 
 @Controller
 public class RuleNameController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RuleNameController.class);
+
     // TODO: Inject RuleName service DONE
     @Autowired
     RuleNameService ruleNameService;
@@ -27,11 +32,15 @@ public class RuleNameController {
         List<RuleName> ruleNames = ruleNameService.findAll();
         model.addAttribute("ruleNamez",ruleNames);
 
+
+        LOGGER.info("Loading page :ruleName/list + numbre of ruleNames: " + ruleNames.size());
         return "ruleName/list";
     }
 
     @GetMapping("/ruleName/add")
     public String addRuleForm(RuleName bid) {
+        LOGGER.info("Loading page :ruleName/add");
+
         return "ruleName/add";
     }
 
@@ -39,10 +48,14 @@ public class RuleNameController {
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return RuleName list DONE
         if(result.hasErrors()){
+            LOGGER.error("Validation error on ruleNAme/add!!!");
+
             return "ruleName/add";
         }
        ruleNameService.save(ruleName);
         home(model);
+
+    LOGGER.info("Loading page :ruleName/list + new ruleName adding + id: " + ruleName.getId());
         return "ruleName/list";
     }
 
@@ -53,7 +66,7 @@ public class RuleNameController {
         RuleName ruleName = ruleNameService.findById(id);
 
         model.addAttribute("ruleName", ruleName);
-
+        LOGGER.info("Loading page :ruleName/update/id :updating ruleNAme with id: " + id);
 
         return "ruleName/update";
     }
@@ -68,6 +81,7 @@ public class RuleNameController {
         ruleNameService.save(ruleName);
         model.addAttribute("ruleNamez", ruleNameService.findAll());
 
+        LOGGER.info("Redirection to :ruleName/list with updating ruleName with id: " +ruleName.getId());
         return "redirect:/ruleName/list";
     }
 
@@ -76,6 +90,7 @@ public class RuleNameController {
         // TODO: Find RuleName by Id and delete the RuleName, return to Rule list Done
 
         ruleNameService.delete(id);
+        LOGGER.info("Redirection to :ruleName/list with deleting ruleNAme with id: " + id );
         return "redirect:/ruleName/list";
     }
 }
