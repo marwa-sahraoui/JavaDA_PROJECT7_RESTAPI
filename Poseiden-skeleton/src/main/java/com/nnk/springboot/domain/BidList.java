@@ -41,11 +41,27 @@ public class BidList {
     private String sourceListId;
     private String side;
 
-    public BidList(String account_test, String type_test, double v) {
+
+
+    public BidList(Integer bidListId, String account, String type, Double bid, Double ask,
+                   Timestamp creationDate, Timestamp revisionDate) {
+        BidListId = bidListId;
+        this.account = account;
+        this.type = type;
+        this.bid = bid;
+        this.ask = ask;
+        this.creationDate = creationDate;
+        this.revisionDate = revisionDate;
     }
 
     public BidList() {
         //
+    }
+
+    public BidList(String account_test, String type_test, double v) {
+        this.account = account_test;
+        this.type = type_test;
+        this.bidQuantity = v;
     }
 
     public Integer getBidListId() {

@@ -18,7 +18,7 @@ public class BidTests {
 
 	@Autowired
 	private BidListRepository bidListRepository;
-
+    //correction constructeur
 	@Test
 	public void bidListTest() {
 		BidList bid = new BidList("Account Test", "Type Test", 10d);
@@ -33,11 +33,11 @@ public class BidTests {
 		bid = bidListRepository.save(bid);
 		Assert.assertEquals(bid.getBidQuantity(), 20d, 20d);
 
-		// Find
+//		// Find
 		List<BidList> listResult = bidListRepository.findAll();
 		Assert.assertTrue(listResult.size() > 0);
 
-		// Delete
+//		// Delete
 		Integer id = bid.getBidListId();
 		bidListRepository.delete(bid);
 		Optional<BidList> bidList = bidListRepository.findById(id);

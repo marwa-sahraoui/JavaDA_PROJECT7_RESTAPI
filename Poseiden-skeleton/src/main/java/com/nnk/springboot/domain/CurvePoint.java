@@ -18,7 +18,7 @@ public class CurvePoint {
     private Integer id;
     @NotNull(message = "CurveId is mandatory")  //not null pour valider tous les champs
     private Integer curveId;
-    @NotNull(message = "AsOfDate is mandatory")
+   @NotNull(message = "AsOfDate is mandatory")
     private Timestamp asOfDate;
     @NotNull(message = "Term is mandatory")
     private Double term;
@@ -27,12 +27,6 @@ public class CurvePoint {
     @NotNull(message = "CreationDate is mandatory")
     private Timestamp creationDate;
 
-    public CurvePoint(int i, double v, double v1) {
-    }
-
-    public CurvePoint(){
-        // Constructeur par défaut
-    }
 
     public CurvePoint(Integer id, Integer curveId, Timestamp asOfDate,
                       Double term, Double value, Timestamp creationDate) {
@@ -42,6 +36,16 @@ public class CurvePoint {
         this.term = term;
         this.value = value;
         this.creationDate = creationDate;
+    }
+
+    public CurvePoint() {
+       //
+    }
+
+    public CurvePoint(int curveId, double term, double value) {
+        this.curveId = curveId;
+        this.term= term;
+        this.value = value;
     }
 
     public Integer getId() {

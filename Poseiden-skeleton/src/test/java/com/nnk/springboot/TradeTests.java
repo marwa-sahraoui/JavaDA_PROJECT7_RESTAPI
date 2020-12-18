@@ -22,7 +22,7 @@ public class TradeTests {
 	@Test
 	public void tradeTest() {
 		Trade trade = new Trade("Trade Account", "Type");
-
+        trade.setBuyQuantity(2.0);  //vue que buyquantity est mandatory on lui attribue une valeur
 		// Save
 		trade = tradeRepository.save(trade);
 		Assert.assertNotNull(trade.getTradeId());

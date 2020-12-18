@@ -17,7 +17,7 @@ public class Trade {
     private String account;
     @NotNull(message = "Type is mandatory")
     private String type;
-    @NotNull(message = " BuyQuantity is mandatory")
+   @NotNull(message = " BuyQuantity is mandatory")
     private Double buyQuantity;
 
     private Double sellQuantity;
@@ -39,6 +39,8 @@ public class Trade {
     private String side;
 
     public Trade(String trade_account, String type) {
+        this.account = trade_account;
+        this.type = type;
     }
 
     public Trade() {
