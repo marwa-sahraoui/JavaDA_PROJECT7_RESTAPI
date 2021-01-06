@@ -1,12 +1,10 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,8 +20,7 @@ import java.util.List;
 public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    private UserRepository userRepository;
+
     @Autowired
     private UserService userService;
 
@@ -48,13 +45,16 @@ public class UserController {
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-            user.setPassword(userService.encodePassword(user.getPassword()));
 
-            userService.save(user);
-            home(model);
+            try {
+                userService.save(user);
+            } catch (Exception e) {
+               model.addAttribute("messageerror", e.getMessage());
+                return "user/add";
+            }
 
             LOGGER.info("Loading page :user/list + new user adding + id: " + user.getId());
-            return "redirect:/user/list";
+            return "user/list";
         }
         return "user/add";
     }

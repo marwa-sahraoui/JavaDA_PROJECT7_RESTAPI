@@ -6,11 +6,11 @@ import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "rulename")
+@Table(name = "RuleName")
 public class RuleName {
     // TODO: Map columns in data table RULENAME with corresponding java fields:DONE
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotBlank(message = "Name is mandatory")
     private String name;

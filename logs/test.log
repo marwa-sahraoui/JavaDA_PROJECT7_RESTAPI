@@ -1,0 +1,45 @@
+2021-01-01 10:57:40.220  INFO 5149 --- [restartedMain] o.s.boot.SpringApplication               : 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+[32m :: Spring Boot :: [39m      [2m (v2.2.6.RELEASE)[0;39m
+
+
+2021-01-01 10:57:45.331  WARN 5149 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5002 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2021-01-01 10:57:50.345  INFO 5149 --- [restartedMain] com.nnk.springboot.Application           : Starting Application on iNebrass.local with PID 5149 (/Users/marwa/projetS/JavaDA_PROJECT7_RESTAPI-master/Poseiden-skeleton/target/classes started by marwa in /Users/marwa/projetS/JavaDA_PROJECT7_RESTAPI-master)
+2021-01-01 10:57:50.346  INFO 5149 --- [restartedMain] com.nnk.springboot.Application           : No active profile set, falling back to default profiles: default
+2021-01-01 10:57:50.390  INFO 5149 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in /Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/Users/marwa/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2021-01-01 10:57:50.391  INFO 5149 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-01-01 10:57:50.391  INFO 5149 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-01-01 10:57:51.079  INFO 5149 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-01 10:57:51.163  INFO 5149 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73ms. Found 6 JPA repository interfaces.
+2021-01-01 10:57:51.801  INFO 5149 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-01 10:57:51.817  INFO 5149 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-01 10:57:51.817  INFO 5149 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2021-01-01 10:57:51.919  INFO 5149 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-01 10:57:51.920  INFO 5149 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1529 ms
+2021-01-01 10:57:52.114  INFO 5149 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-01-01 10:57:52.225  INFO 5149 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2021-01-01 10:57:52.390  INFO 5149 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-01-01 10:57:52.595  INFO 5149 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-01 10:57:52.596  WARN 5149 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-01-01 10:57:53.001  INFO 5149 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-01 10:57:53.028  INFO 5149 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-01-01 10:57:53.929  INFO 5149 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-01 10:57:53.939  INFO 5149 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-01 10:57:53.972  INFO 5149 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-01-01 10:57:54.056  WARN 5149 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-01 10:57:54.664  INFO 5149 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-01 10:57:55.005  INFO 5149 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1baeabca, org.springframework.security.web.context.SecurityContextPersistenceFilter@1222b63b, org.springframework.security.web.header.HeaderWriterFilter@166897e8, org.springframework.security.web.authentication.logout.LogoutFilter@35f91e8a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5c767d7e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34989871, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5af8468f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@275a3efa, org.springframework.security.web.session.SessionManagementFilter@58323d35, org.springframework.security.web.access.ExceptionTranslationFilter@5b3f8f1d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6db7f6ad]
+2021-01-01 10:57:55.090  INFO 5149 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-01 10:57:55.092  INFO 5149 --- [restartedMain] com.nnk.springboot.Application           : Started Application in 20.277 seconds (JVM running for 26.124)
+2021-01-01 11:24:04.145  INFO 5149 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-01 11:24:04.146  INFO 5149 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-01 11:24:04.152  INFO 5149 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-01-01 11:27:06.275  INFO 5149 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-01 11:27:06.277  INFO 5149 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-01 11:27:06.281  INFO 5149 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-01 11:27:06.290  INFO 5149 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

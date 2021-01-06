@@ -1,20 +1,16 @@
 package com.nnk.springboot.domain;
 
-import org.springframework.beans.factory.annotation.Required;
-
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "bidlist")
+@Table(name = "BidList")
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields:DONE
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer BidListId;
     @NotBlank(message = "Account is mandatory")
     private String account;

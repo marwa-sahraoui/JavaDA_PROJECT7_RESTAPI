@@ -5,11 +5,11 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "rating")
+@Table(name = "Rating")
 public class Rating {
     // TODO: Map columns in data table RATING with corresponding java fields :DONE
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     String moodysRating;
     String sandPRating;

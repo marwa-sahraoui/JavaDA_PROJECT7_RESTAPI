@@ -22,17 +22,16 @@ public class BidListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BidListController.class);
 
-    // TODO: Inject Bid service Done
+    // Done: Inject Bid service
      @Autowired
     BidListService bidListService;
 
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
-        // TODO: call service find all bids to show to the view Done
+        // DONE: call service find all bids to show to the view
         List<BidList> bidlists = bidListService.findAll();
         model.addAttribute("bidlistz" ,bidlists);
-        //log
        LOGGER.info("Loading page :bidList/list + numbre of bidlists: " + bidlists.size());
         return "bidList/list";
 
@@ -47,7 +46,7 @@ public class BidListController {
 
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return bid list DONE
+        // DONE: check data valid and save to db, after saving return bid list DONE
         if(result.hasErrors()){
             LOGGER.error("Validation error on bidList/add!!!");
 
@@ -63,7 +62,7 @@ public class BidListController {
 
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Bid by Id and to model then show to the form DONE
+        // DONE: get Bid by Id and to model then show to the form DONE
 
         BidList bidList = bidListService.findById(id);
         model.addAttribute("bidListz",bidList);
@@ -75,7 +74,7 @@ public class BidListController {
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid DONE
+        // DONE: check required fields, if valid call service to update Bid and return list Bid DONE
         if(result.hasErrors()){
             return "redirect:/bidList/update/" + id;
         }
@@ -89,7 +88,7 @@ public class BidListController {
 
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list Done
+        // DONE: Find Bid by Id and delete the bid, return to Bid list Done
 
         bidListService.delete(id);
         LOGGER.info("Redirection to :bidList/list with deleting bidList with id: " + id );
