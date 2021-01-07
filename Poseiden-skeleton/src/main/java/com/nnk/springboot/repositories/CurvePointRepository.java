@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * permet de manipuler l'entité curvePoint dans la BDD
+ */
 @Repository
 public interface CurvePointRepository extends JpaRepository<CurvePoint, Integer> {
 

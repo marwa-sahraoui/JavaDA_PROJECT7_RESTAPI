@@ -14,6 +14,10 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * permet d'afficher la page de login
+     * @return login.html
+     */
     @GetMapping("login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
@@ -29,6 +33,10 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * permet d'afficher la page d'erreur dans le cas où l'utilisateur est non identifé
+     * @return page d'erreur 403.html
+     */
     @GetMapping("error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();

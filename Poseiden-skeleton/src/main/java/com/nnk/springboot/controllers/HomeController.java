@@ -7,11 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController
 {
+	/**
+	 * permet d'afficher la page home
+	 * @param model
+	 * @return page home.html
+	 */
 	@RequestMapping("/")
 	public String home(Model model)
 	{
 		return "home";
 	}
+
 
 	@RequestMapping("/admin/home")
 	public String adminHome(Model model)

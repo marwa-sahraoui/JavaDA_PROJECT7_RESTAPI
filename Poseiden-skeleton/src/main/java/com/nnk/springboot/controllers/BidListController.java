@@ -26,6 +26,11 @@ public class BidListController {
      @Autowired
     BidListService bidListService;
 
+    /**
+     * permet d'afficher la liste des bidList
+     * @param model
+     * @return page bidList/list.html
+     */
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
@@ -37,6 +42,11 @@ public class BidListController {
 
     }
 
+    /**
+     * permet d'afficher la page de formulaire d'ajout
+     * @param bid
+     * @return page bidList/add.html
+     */
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
         LOGGER.info("Loading page :bidList/add");
@@ -44,6 +54,14 @@ public class BidListController {
         return "bidList/add";
     }
 
+    /**
+     * permet de persister l'entité bid dans la BDD
+     * @param bid
+     * @param result
+     * @param model
+     * @return la page bidList/list.html aprés l'enregistrement de l'entité bid.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'ajout des bidList
+     */
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // DONE: check data valid and save to db, after saving return bid list DONE
@@ -60,6 +78,12 @@ public class BidListController {
         return "bidList/list";
     }
 
+    /**
+     * permet de faire la mise à jour en BDD
+     * @param id
+     * @param model
+     * @return la page bidList/update.html
+     */
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // DONE: get Bid by Id and to model then show to the form DONE
@@ -71,6 +95,15 @@ public class BidListController {
         return "bidList/update";
     }
 
+    /**
+     * permet de valider la mise à jour en BDD
+     * @param id
+     * @param bidList
+     * @param result
+     * @param model
+     * @return la page bidList/list.html aprés l'enregistrement de la mise à jour de l'entité bid.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'update des bidList
+     */
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
@@ -86,6 +119,12 @@ public class BidListController {
         return "redirect:/bidList/list";
     }
 
+    /**
+     * permet la suppression d'un bid ayant un identifiant donné
+     * @param id
+     * @param model
+     * @return la page bidList/list.html après la suppresion du bidList à identifiant donné
+     */
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // DONE: Find Bid by Id and delete the bid, return to Bid list Done

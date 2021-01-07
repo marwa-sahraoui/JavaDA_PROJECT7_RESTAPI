@@ -1,7 +1,5 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.controllers.BidListController;
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import org.slf4j.Logger;
@@ -25,11 +23,19 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
-
+    
+    /**
+     * permet de lister tous les utilisateurs existants dans la bdd
+     * @return une liste des trades
+     */
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+    /**
+     * permet d'enregistrer un user donné dans la bdd
+     * @param user l'objet à persister
+     */
     public void save(User user) {
         String password = user.getPassword();
 
@@ -64,17 +70,36 @@ public class UserService {
         userRepository.save(user);
     }
 
+    /**
+     * permet de chercher un utilisateur à partir de son id
+     * @param id l'identifiant de l'utilisateur
+     * @return un utilisateur qui posséde l'identifiant donné. Sinon une exception est levée
+     */
     public User findById(Integer id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
     }
 
+    /**
+     * permet de crypter le mot de passe
+     * @param userPassword mot de passe en clair
+     * @return password encodé
+     */
     public String encodePassword(String userPassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(userPassword);
     }
 
+    /**
+     * permet la suppression d'un utilisateur à partir de son id
+     * @param id l'identifiant de l'utilisateur
+     */
     public void deleteById(Integer id) {
+        userRepository.deleteById(id);
+    }
+
+
+    public void delete(Integer id) {
         userRepository.deleteById(id);
     }
 }

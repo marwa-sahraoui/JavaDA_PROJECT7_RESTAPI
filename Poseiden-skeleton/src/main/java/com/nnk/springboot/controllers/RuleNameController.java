@@ -21,14 +21,19 @@ public class RuleNameController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RuleNameController.class);
 
-    // TODO: Inject RuleName service DONE
+    // DONE: Inject RuleName service DONE
     @Autowired
     RuleNameService ruleNameService;
 
+    /**
+     * permet d'afficher la liste des ruleName
+     * @param model
+     * @return page ruleName/list.html
+     */
     @RequestMapping("/ruleName/list")
     public String home(Model model)
     {
-        // TODO: find all RuleName, add to model DONE
+        // DONE: find all RuleName, add to model DONE
         List<RuleName> ruleNames = ruleNameService.findAll();
         model.addAttribute("ruleNamez",ruleNames);
 
@@ -37,16 +42,29 @@ public class RuleNameController {
         return "ruleName/list";
     }
 
+    /**
+     * permet d'afficher la page de formulaire d'ajout
+     * @param ruleName
+     * @return page ruleName/add.html
+     */
     @GetMapping("/ruleName/add")
-    public String addRuleForm(RuleName bid) {
+    public String addRuleForm(RuleName ruleName) {
         LOGGER.info("Loading page :ruleName/add");
 
         return "ruleName/add";
     }
 
+    /**
+     * permet de persister l'entité bid dans la BDD
+     * @param ruleName
+     * @param result
+     * @param model
+     * @return la page ruleName/list.html aprés l'enregistrement de l'entité ruleName.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'ajout des ruleName
+     */
     @PostMapping("/ruleName/validate")
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return RuleName list DONE
+        // DONE: check data valid and save to db, after saving return RuleName list DONE
         if(result.hasErrors()){
             LOGGER.error("Validation error on ruleNAme/add!!!");
 
@@ -59,9 +77,15 @@ public class RuleNameController {
         return "ruleName/list";
     }
 
+    /**
+     * permet de faire la mise à jour en BDD
+     * @param id
+     * @param model
+     * @return la page ruleName/update.html
+     */
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get RuleName by Id and to model then show to the form DONE
+        // DONE: get RuleName by Id and to model then show to the form DONE
 
         RuleName ruleName = ruleNameService.findById(id);
 
@@ -71,10 +95,19 @@ public class RuleNameController {
         return "ruleName/update";
     }
 
+    /**
+     * permet de valider la mise à jour en BDD
+     * @param id
+     * @param ruleName
+     * @param result
+     * @param model
+     * @return la page ruleName/list.html aprés l'enregistrement de la mise à jour de l'entité ruleName.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'update des ruleName
+     */
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update RuleName and return RuleName list
+        // DONE: check required fields, if valid call service to update RuleName and return RuleName list
         if(result.hasErrors()){
             return "redirect:/ruleName/update/" + id;
         }
@@ -85,9 +118,15 @@ public class RuleNameController {
         return "redirect:/ruleName/list";
     }
 
+    /**
+     * permet la suppression d'un ruleName ayant un identifiant donné
+     * @param id
+     * @param model
+     * @return la page ruleName/list.html après la suppresion du rating à identifiant donné
+     */
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find RuleName by Id and delete the RuleName, return to Rule list Done
+        // DONE: Find RuleName by Id and delete the RuleName, return to Rule list Done
 
         ruleNameService.delete(id);
         LOGGER.info("Redirection to :ruleName/list with deleting ruleNAme with id: " + id );

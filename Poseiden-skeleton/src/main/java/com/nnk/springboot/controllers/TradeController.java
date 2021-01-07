@@ -21,14 +21,19 @@ public class TradeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TradeController.class);
 
-    // TODO: Inject Trade service
+    // DONE: Inject Trade service
     @Autowired
     TradeService tradeService;
 
+    /**
+     * permet d'afficher la liste des trade
+     * @param model
+     * @return page trade/list.html
+     */
     @RequestMapping("/trade/list")
     public String home(Model model)
     {
-        // TODO: find all Trade, add to model DONE
+        // DONE: find all Trade, add to model DONE
         List<Trade> trades = tradeService.findAll();
         model.addAttribute("tradez",trades);
 
@@ -36,16 +41,29 @@ public class TradeController {
         return "trade/list";
     }
 
+    /**
+     * permet d'afficher la page de formulaire d'ajout
+     * @param trade
+     * @return page trade/add.html
+     */
     @GetMapping("/trade/add")
-    public String addUser(Trade bid) {
+    public String addUser(Trade trade) {
 
         LOGGER.info("Loading page :bidList/add");
         return "trade/add";
     }
 
+    /**
+     * permet de persister l'entité bid dans la BDD
+     * @param trade
+     * @param result
+     * @param model
+     * @return la page trade/list.html aprés l'enregistrement de l'entité trade.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'ajout des trade
+     */
     @PostMapping("/trade/validate")
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Trade list DONE
+        // DONE: check data valid and save to db, after saving return Trade list DONE
         if(result.hasErrors()){
             LOGGER.error("Validation error on trade/add!!!");
             return "trade/add";
@@ -57,9 +75,15 @@ public class TradeController {
         return "trade/list";
     }
 
+    /**
+     * permet de faire la mise à jour en BDD
+     * @param id
+     * @param model
+     * @return la page trade/update.html
+     */
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Trade by Id and to model then show to the form DONE
+        // DONE: get Trade by Id and to model then show to the form DONE
 
         Trade trade = tradeService.findById(id);
         model.addAttribute("trade",trade);
@@ -68,10 +92,19 @@ public class TradeController {
         return "trade/update";
     }
 
+    /**
+     * permet de valider la mise à jour en BDD
+     * @param id
+     * @param trade
+     * @param result
+     * @param model
+     * @return la page trade/list.html aprés l'enregistrement de la mise à jour de l'entité trade.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'update des trade
+     */
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Trade and return Trade list DONE
+        // DONE: check required fields, if valid call service to update Trade and return Trade list DONE
         if(result.hasErrors()) {
             return "redirect:/trade/update/" + id;
         }
@@ -82,9 +115,15 @@ public class TradeController {
         return "redirect:/trade/list";
     }
 
+    /**
+     * permet la suppression d'un trade ayant un identifiant donné
+     * @param id
+     * @param model
+     * @return la page trade/list.html après la suppresion du trade à identifiant donné
+     */
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Trade by Id and delete the Trade, return to Trade list
+        // DONE: Find Trade by Id and delete the Trade, return to Trade list
 
         tradeService.delete(id);
 

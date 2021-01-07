@@ -1,85 +1,72 @@
 package com.nnk.springboot.services;
-
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.UserRepository;
 import org.junit.Assert;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+
 class UserServiceTest {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Test
+    void encodePasswordUseBCrypt() {
+        // instaciation de userService
+        UserService userService = new UserService();
+        
+        // Utilisation de la méthode encodePassword pour un exemple
+        String encodedPassword = userService.encodePassword("Hello@2021");
+
+        // utilisation de l'algorithme BCrypt
+        // comparaison de résultat de BCrypt avec le resultat de la methode encodePassword
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        assertTrue(bCryptPasswordEncoder.matches("Hello@2021", encodedPassword));
+    }
 
     @Autowired
     private UserService userService;
 
-    @BeforeAll
-    void setUp() {
-        User user = new User(1, "marwa", "123", "marwa sahraoui", "user");
-        userRepository.save(user);
-    }
-
     @Test
-    void findAllWillFindSize1AfterSavingUser() {
-        List<User> users = userService.findAll();
-        assertEquals(1, users.size());
-        assertEquals("marwa", users.get(0).getUsername());
-    }
+    public void userTest() {
+        User user = new User();
+        user.setFullname("Omar SY");
+        user.setUsername("Omar");
+        user.setRole("USER");
+        user.setPassword("Hello@2021");
 
-    @Test
-    void saveWillFindUserRepoAccountAdding1ToTheInitialNumber() {
-        long initial = userRepository.count();
-        userService.save(new User(2, "simpson", "Hello@2020", "Homer Simpson", "user"));
-        assertEquals(initial + 1, userRepository.count());
+        // Save
+        //on vérifie que l'identifiant de l'utilisateur est non null
+        userService.save(user);
+        user = userService.findById(user.getId());
+        Assert.assertNotNull(user.getId());
+        Assert.assertTrue(user.getFullname().equals("Omar SY"));
 
-        userRepository.deleteById(2);
-    }
+        // Update
+        //on modifie un paramétre et on vérifie qu'il va remplacer l'ancien paramétre
+        user.setFullname("Joe Bean");
+        userService.save(user);
+        user = userService.findById(user.getId());
+        Assert.assertTrue(user.getFullname().equals("Joe Bean"));
 
-    @Test
-    void saveWillFailBecauseNoSpecialCharacterInPassword() {
-        Assertions.assertThrows(IllegalStateException.class, () -> {
-            userService.save(new User(2, "simpson", "hello2020", "Homer Simpson", "user"));
-        });
-    }
+        // Find
+        //on vérife que la taille de la liste >0
+        List<User> listResult = userService.findAll();
+        Assert.assertTrue(listResult.size() > 0);
 
-    @Test
-    void saveWillFailBecauseNoNumberInPassword() {
-        Assertions.assertThrows(IllegalStateException.class, () -> {
-            userService.save(new User(2, "simpson", "Helloooooo@", "Homer Simpson", "user"));
-        });
-    }
-
-    @Test
-    void saveWillFailBecauseShortPassword() {
-        Assertions.assertThrows(IllegalStateException.class, () -> {
-            userService.save(new User(2, "simpson", "Hello@2", "Homer Simpson", "user"));
-        });
-    }
-
-    @Test
-    void findById() {
-        User user = userService.findById(1);
-        assertEquals("marwa", user.getUsername());
-    }
-
-    @Test
-    void deleteById() {
-        long initial = userRepository.count();
-
-        userService.deleteById(1);
-
-        List<User> users = userService.findAll();
-        assertEquals(initial - 1, users.size());
+        // Delete
+        // on supprime l'utilisateur et on vérifie qu'il n'est présent en bDD
+        Integer id = user.getId();
+        userService.delete(id);
+        assertThrows(IllegalArgumentException.class , () -> userService.findById(id));
     }
 }

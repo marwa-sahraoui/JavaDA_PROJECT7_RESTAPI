@@ -16,17 +16,9 @@
 	<div class="row">
 		<form action="#" th:action="@{/rating/validate}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
-			TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
+			DONE: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
 			 -->
              <table>
-
-				 <!--tr>
-					<td>Id:</td>
-					<td><input type="text" th:field="*{id}"></td>
-					<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id
-							 Error
-					</td>
-				 </tr-->
 				 <tr>
 					 <td>MoodysRating:</td>
 					 <td><input type="text" th:field="*{moodysRating}"></td>
@@ -63,7 +55,6 @@
 						 <input type="submit" value="Cancel">
 					 </td>
 				 </tr>
-
 			 </table>
 		</form>
 	</div>

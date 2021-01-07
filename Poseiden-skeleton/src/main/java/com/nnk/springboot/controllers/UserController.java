@@ -24,6 +24,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * permet d'afficher la liste des users
+     * @param model
+     * @return page users/list.html
+     */
     @RequestMapping("/user/list")
     public String home(Model model)
     {
@@ -35,6 +40,11 @@ public class UserController {
         return "user/list";
     }
 
+    /**
+     * permet d'afficher la page de formulaire d'ajout
+     * @param user
+     * @return page user/add.html
+     */
     @GetMapping("/user/add")
     public String addUser(User user) {
 
@@ -42,6 +52,14 @@ public class UserController {
         return "user/add";
     }
 
+    /**
+     * permet de persister l'entité bid dans la BDD
+     * @param user
+     * @param result
+     * @param model
+     * @return la page user/list.html aprés l'enregistrement de l'entité user.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'ajout des user
+     */
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -59,6 +77,12 @@ public class UserController {
         return "user/add";
     }
 
+    /**
+     * permet de faire la mise à jour en BDD
+     * @param id
+     * @param model
+     * @return la page user/update.html
+     */
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         User user = userService.findById(id);
@@ -70,6 +94,15 @@ public class UserController {
         return "user/update";
     }
 
+    /**
+     * permet de valider la mise à jour en BDD
+     * @param id
+     * @param user
+     * @param result
+     * @param model
+     * @return la page user/list.html aprés l'enregistrement de la mise à jour de l'entité user.
+     * Si pas de validation des champs contraints, on retourne au formulaire d'update des user
+     */
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") Integer id, @Valid User user,
                              BindingResult result, Model model) {
@@ -87,6 +120,12 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    /**
+     * permet la suppression d'un utilisateur ayant un identifiant donné
+     * @param id
+     * @param model
+     * @return la page user/list.html après la suppresion d'un utilisateur à identifiant donné
+     */
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
 
